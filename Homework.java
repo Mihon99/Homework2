@@ -5,7 +5,12 @@ import java.io.PrintWriter;
 
 public class Homework {
     public static void main(String[] args) throws FileNotFoundException{
-
+        int[] array = readFile();
+        int a = array[0];
+        int b = array[1];
+        if(a == 0 && b == 0) writeFile("Вы забыли задать переменные");
+        else if(b < 0) writeFile(negativPow(a, b));
+        else writeFile(positivPow(a, b));
     }
     
     // Метод считывания файла:
@@ -52,5 +57,12 @@ public class Homework {
         result = String.valueOf(1/temp);
         return result;
     }
-    
+
+    // Метод записи в файл:
+    public static void writeFile(String string) throws FileNotFoundException {
+        File file = new File("output.txt");
+        PrintWriter pw = new PrintWriter(file);
+        pw.println(string);
+        pw.close(); 
+    }
 }
