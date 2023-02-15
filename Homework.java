@@ -8,20 +8,23 @@ public class Homework {
         int[] array = readFile();
         int a = array[0];
         int b = array[1];
-        if(a == 0 && b == 0) writeFile("Вы забыли задать переменные");
-        else if(b < 0) writeFile(negativPow(a, b));
-        else writeFile(positivPow(a, b));
+        System.out.println("a= "+a);
+        System.out.println("b= "+b);
+        String str = "";        
+        if(a == 0 && b == 0) writeFile("не определено");
+        else if(b < 0) writeFile(str = a + "^" + b + " = " + negativPow(a, b));
+        else writeFile(str = a + "^" + b + " = " + positivPow(a, b));
     }
     
     // Метод считывания файла:
     public static int[] readFile() throws FileNotFoundException {
-        File infile = new File("input.txt");
-        Scanner scanner = new Scanner(infile);
+        File file = new File("input.txt");
+        Scanner scanner = new Scanner(file);
         String line = scanner.nextLine();
         int[] intArray = new int[2];
         String[] stringArray = line.split(" ");
-        
-        if(stringArray[0] == "a"){
+        String x = "a";
+        if(stringArray[0].codePointAt(0) == x.codePointAt(0)){
             intArray[0] = Integer.parseInt(stringArray[1]);
             stringArray = scanner.nextLine().split(" ");
             intArray[1] = Integer.parseInt(stringArray[1]);
@@ -31,7 +34,6 @@ public class Homework {
             stringArray = scanner.nextLine().split(" ");
             intArray[0] = Integer.parseInt(stringArray[1]);
         }
-        
         scanner.close();
         return intArray;
     }
